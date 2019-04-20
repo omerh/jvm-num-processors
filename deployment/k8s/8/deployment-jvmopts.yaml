@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jvm-num-processors-openjdk8
+spec:
+  selector:
+    matchLabels:
+      app: jvm-num-processors-openjdk8
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: jvm-num-processors-openjdk8
+    spec:
+      containers:
+        - name: jvm-num-processors-openjdk8
+          image: omerha/jvm-num-processors:openjdk8
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: JAVA_OPTS
+              value: "-XX:+UnlockExperimentalVMOptions"
+      restartPolicy: Never
